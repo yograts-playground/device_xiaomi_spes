@@ -57,8 +57,14 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.consumerir.xml \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.location.gps.xml \
+    frameworks/native/data/etc/android.hardware.nfc.ese.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_k7tn/android.hardware.nfc.ese.xml \
+    frameworks/native/data/etc/android.hardware.nfc.hce.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_k7tn/android.hardware.nfc.hce.xml \
+    frameworks/native/data/etc/android.hardware.nfc.hcef.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_k7tn/android.hardware.nfc.hcef.xml \
+    frameworks/native/data/etc/android.hardware.nfc.uicc.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_k7tn/android.hardware.nfc.uicc.xml \
+    frameworks/native/data/etc/android.hardware.nfc.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_k7tn/android.hardware.nfc.xml \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.opengles.aep.xml \
-    frameworks/native/data/etc/android.hardware.se.omapi.uicc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_k7tn/android.hardware.se.omapi.uicc.xml \
+    frameworks/native/data/etc/android.hardware.se.omapi.ese.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_k7tn/android.hardware.se.omapi.ese.xml \
+    frameworks/native/data/etc/android.hardware.se.omapi.uicc.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_k7tn/android.hardware.se.omapi.uicc.xml \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.barometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.barometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.compass.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.compass.xml \
@@ -86,7 +92,12 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.opengles.deqp.level-2021-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.opengles.deqp.level.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.verified_boot.xml \
-    frameworks/native/data/etc/android.software.vulkan.deqp.level-2021-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.vulkan.deqp.level.xml
+    frameworks/native/data/etc/android.software.vulkan.deqp.level-2021-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.vulkan.deqp.level.xml \
+    frameworks/native/data/etc/com.android.nfc_extras.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_k7tn/com.android.nfc_extras.xml
+
+# Atrace
+PRODUCT_PACKAGES += \
+    android.hardware.atrace@1.0-service
 
 # ANT+
 PRODUCT_PACKAGES += \
@@ -99,12 +110,14 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.effect@6.0-impl \
     android.hardware.audio.sounddose-vendor-impl \
     android.hardware.audio.service \
-    android.hardware.bluetooth.audio-impl
+    android.hardware.bluetooth.audio-impl \
+   android.hardware.soundtrigger@2.3-impl
 
 PRODUCT_PACKAGES += \
     audio.bluetooth.default \
     audio.r_submix.default \
-    audio.usb.default
+    audio.usb.default \
+    sound_trigger.primary.bengal
 
 PRODUCT_PACKAGES += \
     libaudioroute \
@@ -180,8 +193,7 @@ PRODUCT_COPY_FILES += \
 
 # Consumer IR
 PRODUCT_PACKAGES += \
-    android.hardware.ir@1.0-impl \
-    android.hardware.ir@1.0-service
+    android.hardware.ir-service.example
 
 # Configstore
 PRODUCT_PACKAGES += \
@@ -218,8 +230,7 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.mapper@3.0.vendor \
     vendor.qti.hardware.display.mapper@4.0.vendor \
     vendor.qti.hardware.display.mapperextensions@1.1.vendor \
-    vendor.qti.hardware.memtrack-service \
-    vendor.xiaomi.hardware.displayfeature@1.0.vendor
+    vendor.qti.hardware.memtrack-service
 
 PRODUCT_PACKAGES += \
     libdisplayconfig.qti \
@@ -229,7 +240,8 @@ PRODUCT_PACKAGES += \
     libsdmcore \
     libsdmutils \
     libtinyxml \
-    libvulkan
+    libvulkan \
+    libwfdaac_vendor
 
 PRODUCT_PACKAGES += \
     gralloc.qcom
@@ -242,7 +254,9 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.3.vendor \
     android.hardware.drm@1.4.vendor \
     android.hardware.drm-service.clearkey \
-    libcrypto-v33
+    libcrypto-v33 \
+    libprotobuf-cpp-full-3.9.1-vendorcompat \
+    libprotobuf-cpp-lite-3.9.1-vendorcompat
 
 # Fastbootd
 PRODUCT_PACKAGES += \
@@ -266,7 +280,6 @@ PRODUCT_PACKAGES += \
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint-service.xiaomi \
-    android.hardware.biometrics.fingerprint@2.1.vendor \
     libvendor.goodix.hardware.biometrics.fingerprint@2.1.vendor \
     vendor.goodix.hardware.fingerprintextension@1.0.vendor \
     com.fingerprints.extension@1.0.vendor
@@ -296,6 +309,9 @@ PRODUCT_PACKAGES += \
 # Hotword Enrollment
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/privapp-permissions-google-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-google-hotword.xml
+
+# ION
+$(call soong_config_set_bool,libion,legacy_impl,true)
 
 # IPACM
 PRODUCT_PACKAGES += \
@@ -376,7 +392,7 @@ PRODUCT_PACKAGES += \
 
 # NFC
 PRODUCT_PACKAGES += \
-    android.hardware.nfc@1.2-service.st \
+    android.hardware.nfc-service.st \
     com.android.nfc_extras \
     libchrome.vendor \
     nfc_nci.st21nfc.default \
@@ -402,11 +418,13 @@ PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
     android.hardware.power@1.3.vendor \
     android.hardware.power-service.lineage-libperfmgr \
-    libqti-perfd-client
+    libqti-perfd-client \
+    libperfmgr
 
 PRODUCT_SOONG_NAMESPACES += \
     hardware/google/interfaces \
-    hardware/google/pixel \
+    hardware/google/pixel/pixelstats \
+    hardware/google/pixel/power-libperfmgr \
     hardware/lineage/interfaces/power-libperfmgr \
     hardware/qcom-caf/common/libqti-perfd-client
 
@@ -443,8 +461,6 @@ PRODUCT_PACKAGES += \
     android.hardware.radio.config@1.3.vendor \
     android.hardware.radio.deprecated@1.0.vendor \
     android.hardware.secure_element@1.2.vendor \
-    libprotobuf-cpp-full-3.9.1-vendorcompat \
-    libprotobuf-cpp-lite-3.9.1-vendorcompat \
     librmnetctl \
     libxml2
 
@@ -508,6 +524,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     telephony-ext
 
+PRODUCT_DEX_PREOPT_MODULE_CONFIGS += qti-telephony-common=disable
 # Update Engine
 PRODUCT_PACKAGES += \
     update_engine \
@@ -559,16 +576,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
 
-# WiFi Display
-PRODUCT_PACKAGES += \
-    libnl \
-    libwfdaac_vendor \
-    libjsoncpp.vendor \
-    libpng.vendor
-
-PRODUCT_BOOT_JARS += \
-    WfdCommon
-
 # XiaomiParts
 PRODUCT_PACKAGES += \
     XiaomiParts
+

@@ -496,7 +496,7 @@
          This flag controls whether the {@link Display#FLAG_SUPPORTS_PROTECTED_BUFFERS}
          flag is set for wifi displays.
     -->
-    <bool name="config_wifiDisplaySupportsProtectedBuffers">true</bool>
+    <bool name="config_wifiDisplaySupportsProtectedBuffers">false</bool>
 
     <!-- Indicate whether closing the lid causes the device to go to sleep and opening
          it causes the device to wake up.
@@ -716,6 +716,9 @@
 
     <!-- default refresh rate in the zone defined by brightness and ambient thresholds -->
     <integer name="config_defaultRefreshRateInZone">90</integer>
+
+    <!-- If not zero, limits the internal screen recorder's framerate to the set value. -->
+    <integer name="config_screenRecorderMaxFramerate">90</integer>
 
     <!-- List of comma separated package names for which we the system will not show crash like
          tts, etc. dialogs. -->

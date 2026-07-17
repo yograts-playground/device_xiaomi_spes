@@ -1,12 +1,13 @@
 [
   {
     "repository": "vendor_xiaomi_spes",
-    "target_path": "vendor/xiaomi/spes"
+    "target_path": "vendor/xiaomi/spes",
+    "branch": "cnb"
   },
   {
     "repository": "kernel_xiaomi_sm6225",
     "target_path": "kernel/xiaomi/sm6225",
-    "branch": "bka"
+    "branch": "cnb"
   },
   {
     "repository": "LineageOS/android_hardware_xiaomi",

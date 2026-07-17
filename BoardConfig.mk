@@ -50,6 +50,7 @@ AUDIO_FEATURE_ENABLED_EXTN_FORMATS := true
 AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
 AUDIO_FEATURE_ENABLED_HDMI_SPK := true
 AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
+BOARD_SUPPORTS_OPENSOURCE_STHAL := true
 BOARD_SUPPORTS_SOUND_TRIGGER := true
 TARGET_PROVIDES_AUDIO_EXTNS := true
 USE_CUSTOM_AUDIO_POLICY :=1
@@ -84,12 +85,10 @@ TARGET_NO_BOOTLOADER := true
 
 # Build Hacks
 BUILD_BROKEN_DUP_RULES := true
-BUILD_BROKEN_ENFORCE_SYSPROP_OWNER := true
 BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
 BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
 BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
-BUILD_BROKEN_INCORRECT_PARTITION_IMAGES := true
 RELAX_USES_LIBRARY_CHECK := true
 
 # Configs File System
@@ -122,13 +121,13 @@ TARGET_OTA_ASSERT_DEVICE := spes,spesn
 
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
-    $(DEVICE_PATH)/configs/hidl/framework_compatibility_matrix.xml
-DEVICE_MATRIX_FILE += $(DEVICE_PATH)/configs/hidl/compatibility_matrix.xml
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/hidl/manifest.xml
-ifeq ($(PRODUCT_NAME), lineage_spes)
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    $(DEVICE_PATH)/configs/hidl/framework_compatibility_matrix-lineage.xml
-endif
+    $(DEVICE_PATH)/configs/vintf/framework_compatibility_matrix.xml \
+    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
+    hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml
+DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
+DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/vintf/manifest.xml
+ODM_MANIFEST_SKUS += k7tn
+ODM_MANIFEST_K7TN_FILES := $(DEVICE_PATH)/configs/vintf/manifest_k7tn.xml
 
 # IMS
 BOARD_USES_LEGACY_IMS_SEPOLICY := true
@@ -229,6 +228,7 @@ TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 TARGET_COPY_OUT_VENDOR := vendor
 
 # Platform
+BOARD_USES_QCOM_HARDWARE := true
 BOARD_VENDOR := xiaomi
 TARGET_BOARD_PLATFORM := bengal
 
@@ -241,9 +241,6 @@ TARGET_PRODUCT_PROP += $(DEVICE_PATH)/configs/props/product.prop
 TARGET_SYSTEM_EXT_PROP += $(DEVICE_PATH)/configs/props/system_ext.prop
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/configs/props/system.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/configs/props/vendor.prop
-
-# QCOM
-BOARD_USES_QCOM_HARDWARE := true
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
@@ -273,7 +270,7 @@ BOARD_VNDK_VERSION := current
 
 # Sepolicy
 include device/qcom/sepolicy_vndr/legacy-um/SEPolicy.mk
-
+include device/lineage/sepolicy/libion/sepolicy.mk
 include device/lineage/sepolicy/libperfmgr/sepolicy.mk
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 ifdef CR_VERSION
