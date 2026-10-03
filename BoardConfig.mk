@@ -106,8 +106,8 @@ BOARD_KERNEL_CMDLINE +=  init.is_dt2w_sensor=1
 BOARD_KERNEL_CMDLINE +=  init.is_st2w_sensor=1
 
 TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_CONFIG := vendor/bengal-perf_defconfig asano.config vendor/xiaomi/spes.config
-TARGET_KERNEL_SOURCE := kernel/xiaomi/spes
+TARGET_KERNEL_CONFIG := vendor/bengal-perf_defconfig glossy.config vendor/xiaomi/spes.config
+TARGET_KERNEL_SOURCE := kernel/xiaomi/sm6225
 TARGET_KERNEL_NO_GCC := true
 TARGET_LINUX_KERNEL_VERSION := 4.19
 
